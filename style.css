@@ -1,0 +1,425 @@
+@charset "UTF-8";
+
+/* ==========================================
+   全体リセット・フォント設定
+   ========================================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #564c49;
+}
+
+body {
+  font-family: 'Mamelon', 'Hiragino Maru Gothic ProN', 'Yu Gothic UI', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ==========================================
+   レスポンシブ背景構造（back2 & back1）
+   ========================================== */
+.back2-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('back2.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #564c49; 
+  display: block;
+}
+
+.back1-container {
+  width: 1200px;
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: linear-gradient(to bottom, #9bb5a2, #e4e8d6);
+  padding: 0 0 62px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   各要素・共通設定
+   ========================================== */
+.main-header {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+.img-header-title {
+  width: 1131px;
+  height: 189px;
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.section-title-center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 19px;
+}
+
+/* ボタンの共通挙動 */
+.btn-hanei, .btn-tuika, .btn-save-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 100%;
+}
+.btn-hanei img, .btn-tuika img, .btn-save-toggle img {
+  width: 100%;
+  display: block;
+  transition: transform 0.1s ease;
+}
+.btn-hanei:hover img, .btn-tuika:hover img, .btn-save-toggle:hover img {
+  transform: scale(1.02);
+}
+
+/* ==========================================
+   駒データ入力エリア
+   ========================================== */
+.input-section {
+  width: 1131px;
+  height: 384px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+  box-sizing: border-box;
+}
+
+.copy-area-wrapper {
+  position: relative;
+  width: 777px;
+  height: 384px;
+}
+.img-copy-area {
+  width: 777px;
+  height: 384px;
+  display: block;
+}
+
+.copy-area-instructions {
+  position: absolute;
+  top: 65px;
+  left: 50px;
+  font-size: 16px;
+  color: #81736d;
+  line-height: 1.5;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.copy-area-wrapper textarea {
+  position: absolute;
+  top: 112px;
+  left: 50px;
+  width: 677px;
+  height: 219px;
+  background: transparent;
+  border: none;
+  resize: none;
+  outline: none;
+  font-size: 15px;
+  color: #81736d;
+  font-family: inherit;
+  box-sizing: border-box;
+  padding: 9px;
+  z-index: 5;
+}
+
+.btn-hanei-wrapper {
+  width: 250px;
+  margin-bottom: 0;
+}
+
+/* ==========================================
+   登録メンバーエリア
+   ========================================== */
+.member-section {
+  width: 1131px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+.img-member-title {
+  width: 496px;
+  height: 112px;
+}
+
+.member-scroll-wrapper {
+  width: 100%;
+  max-height: 1250px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 12px;
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 264px);
+  justify-content: center;
+  gap: 50px 62px;
+}
+
+.member-card {
+  width: 264px;
+  height: 586px;
+  background-image: url('member_status.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 39px;
+  background-color: #e4e8d6;
+  padding: 37px 25px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.member-avatar {
+  width: 156px;
+  height: 156px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  background-color: rgba(129, 115, 109, 0.1);
+  display: block;
+}
+
+.member-name {
+  font-weight: bold;
+  font-size: 20px;
+  color: #81736d;
+  margin-bottom: 16px;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.member-stats {
+  font-size: 15px;
+  color: #81736d;
+  line-height: 1.4;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.member-stat-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed rgba(129, 115, 109, 0.2);
+  padding-bottom: 1px;
+}
+
+.member-height-row {
+  margin-top: 9px;
+  font-weight: bold;
+  color: #564c49;
+}
+
+.btn-tuika-card {
+  width: 162px;
+  margin-top: auto;
+}
+
+.empty-member-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 17px;
+  color: #81736d;
+  font-weight: bold;
+  padding: 62px 0;
+  letter-spacing: 1px;
+}
+
+/* ==========================================
+   ランキングエリア
+   ========================================== */
+.ranking-section {
+  width: 1131px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+.img-ranking-title {
+  width: 496px;
+  height: 112px;
+}
+
+.ranking-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  justify-content: center;
+  gap: 37px 25px;
+  width: 100%;
+}
+
+.ranking-column {
+  width: 300px;
+  height: 684px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 137px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ranking-list-box {
+  width: 82%;
+  height: 450px;
+  overflow-y: auto;
+  font-size: 15px;
+  color: #81736d;
+  line-height: 1.8;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.ranking-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed rgba(129, 115, 109, 0.3);
+  padding: 4px 0;
+}
+
+.ranking-average {
+  position: absolute;
+  bottom: 31px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: #81736d;
+}
+
+/* ==========================================
+   身長打ち込みエリア
+   ========================================== */
+.sintyou-section {
+  width: 1131px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+.img-sintyou-title {
+  width: 729px;
+  height: 62px;
+}
+
+.sintyou-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 750px;
+}
+
+.sintyou-input-wrapper {
+  position: relative;
+  width: 750px;
+  height: 110px;
+}
+.img-sintyou-utikomi {
+  width: 750px;
+  height: 110px;
+  display: block;
+}
+
+.sintyou-input-wrapper input {
+  position: absolute;
+  top: 25%;
+  height: 50%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 20px;
+  color: #81736d;
+  box-sizing: border-box;
+}
+
+.sintyou-input-wrapper .input-name {
+  left: 8%;
+  width: 48%;
+}
+
+.sintyou-input-wrapper .input-height {
+  left: 65%;
+  width: 25%;
+}
+
+.hanei2-wrapper {
+  width: 187px;
+  margin-top: 12px;
+  transform: translateX(281.5px);
+}
+
+/* ==========================================
+   保存フッター・トグル・通知
+   ========================================== */
+.save-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 37px;
+  padding-bottom: 62px;
+}
+
+.toggle-container {
+  position: relative;
+  width: 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-save-toggle {
+  width: 112px;
+}
+
+.save-toast {
+  position: absolute;
+  bottom: -31px;
+  background-color: #81736d;
+  color: #e4e8d6;
+  padding: 5px 15px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-6px);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 100;
+}
+.save-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}

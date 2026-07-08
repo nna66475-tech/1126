@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>能力値比較ツール</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 1. 一番下のレイヤー：back2背景（564c49） -->
+  <div class="back2-wrapper">
+    
+    <!-- 2. その上のレイヤー：back1背景（グラデーション・横幅固定センタリング） -->
+    <div class="back1-container">
+      
+      <!-- ヘッダーエリア -->
+      <header class="main-header">
+        <img src="header_title.png" alt="能力値比較ツール" class="img-header-title">
+      </header>
+
+      <!-- 駒データ入力エリア -->
+      <section class="input-section">
+        <div class="copy-area-wrapper">
+          <img src="copy.png" alt="駒データを貼り付ける" class="img-copy-area">
+          <div class="copy-area-instructions">
+            いあきゃらの駒データを貼ってください。
+          </div>
+          <textarea id="txtKomaData"></textarea>
+        </div>
+        <div class="btn-hanei-wrapper">
+          <button type="button" class="btn-hanei" id="btnHaneiKoma">
+            <img src="button_hanei.png" alt="反映する">
+          </button>
+        </div>
+      </section>
+
+      <!-- 登録メンバーエリア -->
+      <section class="member-section">
+        <div class="section-title-center">
+          <img src="member_title.png" alt="登録メンバー" class="img-member-title">
+        </div>
+        
+        <!-- キャラクターデータが1段3つ、1段目3つの計6つ以上の場合は縦スクロール機能 -->
+        <div class="member-scroll-wrapper" id="memberScrollWrapper">
+          <div class="member-grid" id="memberGrid"></div>
+        </div>
+      </section>
+
+      <!-- ランキングエリア -->
+      <section class="ranking-section">
+        <div class="section-title-center">
+          <img src="ranking_title.png" alt="ランキング" class="img-ranking-title">
+        </div>
+
+        <!-- 9つのステータスランキングを3列×3段のグリッドで表示 -->
+        <div class="ranking-grid-container">
+          
+          <!-- STR -->
+          <div class="ranking-column" style="background-image: url('ranking_str.png');">
+            <div class="ranking-list-box" id="rank-str"></div>
+            <div class="ranking-average" id="avg-str">平均: --</div>
+          </div>
+          <!-- CON -->
+          <div class="ranking-column" style="background-image: url('ranking_con.png');">
+            <div class="ranking-list-box" id="rank-con"></div>
+            <div class="ranking-average" id="avg-con">平均: --</div>
+          </div>
+          <!-- POW -->
+          <div class="ranking-column" style="background-image: url('ranking_pow.png');">
+            <div class="ranking-list-box" id="rank-pow"></div>
+            <div class="ranking-average" id="avg-pow">平均: --</div>
+          </div>
+          <!-- SIZ -->
+          <div class="ranking-column" style="background-image: url('ranking_siz.png');">
+            <div class="ranking-list-box" id="rank-siz"></div>
+            <div class="ranking-average" id="avg-siz">平均: --</div>
+          </div>
+          <!-- APP -->
+          <div class="ranking-column" style="background-image: url('ranking_app.png');">
+            <div class="ranking-list-box" id="rank-app"></div>
+            <div class="ranking-average" id="avg-app">平均: --</div>
+          </div>
+          <!-- DEX -->
+          <div class="ranking-column" style="background-image: url('ranking_dex.png');">
+            <div class="ranking-list-box" id="rank-dex"></div>
+            <div class="ranking-average" id="avg-dex">平均: --</div>
+          </div>
+          <!-- INT -->
+          <div class="ranking-column" style="background-image: url('ranking_int.png');">
+            <div class="ranking-list-box" id="rank-int"></div>
+            <div class="ranking-average" id="avg-int">平均: --</div>
+          </div>
+          <!-- EDU -->
+          <div class="ranking-column" style="background-image: url('ranking_edu.png');">
+            <div class="ranking-list-box" id="rank-edu"></div>
+            <div class="ranking-average" id="avg-edu">平均: --</div>
+          </div>
+          <!-- 身長 -->
+          <div class="ranking-column" style="background-image: url('ranking_sintyou.png');">
+            <div class="ranking-list-box" id="rank-height"></div>
+            <div class="ranking-average" id="avg-height">平均: --</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 身長打ち込みエリア -->
+      <section class="sintyou-section">
+        <div class="section-title-center">
+          <img src="sintyou_title.png" alt="身長を打ち込んでね" class="img-sintyou-title">
+        </div>
+        
+        <div class="sintyou-form-group">
+          <!-- 1人目 -->
+          <div class="sintyou-input-wrapper">
+            <img src="sintyou_utikomi.png" alt="入力欄背景" class="img-sintyou-utikomi">
+            <input type="text" class="input-name" placeholder="なまえ" id="inputName1">
+            <input type="number" class="input-height" placeholder="しんちょう" id="inputHeight1">
+          </div>
+          <!-- 2人目 -->
+          <div class="sintyou-input-wrapper">
+            <img src="sintyou_utikomi.png" alt="入力欄背景" class="img-sintyou-utikomi">
+            <input type="text" class="input-name" placeholder="なまえ" id="inputName2">
+            <input type="number" class="input-height" placeholder="しんちょう" id="inputHeight2">
+          </div>
+        </div>
+
+        <!-- 反映ボタン -->
+        <div class="hanei2-wrapper">
+          <button type="button" class="btn-hanei" id="btnHaneiHeight">
+            <img src="button_hanei.png" alt="反映する">
+          </button>
+        </div>
+      </section>
+
+      <!-- ローカルストレージ保存エリア（トグルスイッチ式） -->
+      <footer class="save-footer">
+        <div class="toggle-container">
+          <button type="button" class="btn-save-toggle" id="btnSaveToggle">
+            <img src="bottun_hozon_off.png" alt="保存ボタン" id="imgSaveBtn">
+          </button>
+          <div class="save-toast" id="saveToast">保存しました</div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
